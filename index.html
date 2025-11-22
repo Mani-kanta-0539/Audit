@@ -2,81 +2,13 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>GritGrade: Content Quality Audit Tool</title>
-    <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-    <script>
-      tailwind.config = {
-        darkMode: 'class',
-        theme: {
-          extend: {
-            fontFamily: {
-              sans: ['Inter', 'sans-serif'],
-              display: ['Poppins', 'sans-serif'],
-            },
-            colors: {
-              primary: {
-                DEFAULT: '#FF642D', // Semrush Orange
-                hover: '#E55019',
-                dark: '#FF642D'
-              },
-              secondary: {
-                DEFAULT: '#9966FF', // Accent Purple
-                light: '#F3EFFF'
-              },
-              // Semrush-style dark theme colors
-              midnight: {
-                DEFAULT: '#171A22',
-                lighter: '#2C3039',
-                card: '#1C1F26'
-              },
-              // Enterprise grays
-              slate: {
-                50: '#F9FAFB',
-                100: '#F3F4F6',
-                800: '#1F2937',
-                900: '#111827'
-              },
-              accent: '#00C2C3', // Teal accent
-              warning: '#FFA800',
-              error: '#FF3D3D',
-              
-              'light-bg': '#F4F5F7', // Light SaaS background
-              'dark-bg': '#111317',  // Deep dark background
-              'light-text': '#171A22',
-              'dark-text': '#FFFFFF',
-              'light-card': '#FFFFFF',
-              'dark-card': '#1C1F26',
-            },
-            boxShadow: {
-              'soft': '0 4px 20px rgba(0,0,0,0.05)',
-              'glow': '0 0 20px rgba(255, 100, 45, 0.3)',
-            }
-          }
-        }
-      }
-    </script>
-  <script type="importmap">
-{
-  "imports": {
-    "@google/genai": "https://aistudiocdn.com/@google/genai@^1.29.1",
-    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
-    "react/": "https://aistudiocdn.com/react@^19.2.0/",
-    "react": "https://aistudiocdn.com/react@^19.2.0",
-    "react-router-dom": "https://aistudiocdn.com/react-router-dom@^7.9.6",
-    "firebase/app": "https://aistudiocdn.com/firebase@^12.6.0/app",
-    "firebase/auth": "https://aistudiocdn.com/firebase@^12.6.0/auth",
-    "firebase/firestore": "https://aistudiocdn.com/firebase@^12.6.0/firestore",
-    "firebase/": "https://aistudiocdn.com/firebase@^12.6.0/"
-  }
-}
-</script>
 <link rel="stylesheet" href="/index.css">
 </head>
   <body class="bg-light-bg dark:bg-dark-bg transition-colors duration-300 text-light-text dark:text-dark-text font-sans antialiased selection:bg-primary selection:text-white">
