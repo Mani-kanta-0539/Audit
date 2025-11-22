@@ -7,6 +7,7 @@
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.x-3178C6?logo=typescript)](https://www.typescriptlang.org/)
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind-3.x-38B2AC?logo=tailwind-css)](https://tailwindcss.com/)
 [![Firebase](https://img.shields.io/badge/Firebase-10.x-FFCA28?logo=firebase)](https://firebase.google.com/)
+[![Deploy Status](https://github.com/Mani-kanta-0539/Audit/actions/workflows/deploy.yml/badge.svg)](https://github.com/Mani-kanta-0539/Audit/actions/workflows/deploy.yml)
 
 ---
 
