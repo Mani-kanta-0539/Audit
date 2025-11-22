@@ -66,14 +66,17 @@ const HomePage: React.FC = () => {
                 <div className="mt-12 sm:mt-16 mx-auto max-w-5xl px-3 sm:px-4">
                     <div className="rounded-xl bg-white/5 backdrop-blur-sm p-2 border border-white/10 shadow-2xl">
                         <div className="rounded-lg overflow-hidden bg-midnight-lighter aspect-[16/9] relative flex items-center justify-center border border-white/5 group">
-                            {/* Placeholder for demo video - replace with your own content */}
-                            <div className="flex flex-col items-center justify-center text-gray-400">
-                                <svg className="w-20 h-20 mb-4 opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                </svg>
-                                <p className="text-sm">Dashboard Preview Coming Soon</p>
-                            </div>
+                            {/* 
+                        INSTRUCTIONS FOR USER: 
+                        1. Name your file "dashboard-demo.gif"
+                        2. Put it in the "public" folder of your project.
+                    */}
+                            <video
+                                src="/demo.mp4"
+                                controls
+                                playsInline
+                                className="w-full h-full object-cover"
+                            />
                         </div>
                     </div>
                 </div>
