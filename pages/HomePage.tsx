@@ -72,7 +72,7 @@ const HomePage: React.FC = () => {
                         2. Put it in the "public" folder of your project.
                     */}
                             <video
-                                src="/demo.mp4"
+                                src="demo.mp4"
                                 controls
                                 playsInline
                                 className="w-full h-full object-cover"
