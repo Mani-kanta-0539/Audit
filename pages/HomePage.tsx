@@ -73,7 +73,9 @@ const HomePage: React.FC = () => {
                     */}
                             <video
                                 src="demo.mp4"
-                                controls
+                                autoPlay
+                                loop
+                                muted
                                 playsInline
                                 className="w-full h-full object-cover"
                             />
