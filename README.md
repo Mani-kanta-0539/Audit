@@ -1,134 +1,125 @@
 # 🚀 GritGrade - Content Quality Audit Tool
 
-> **Transform your content strategy with AI-powered analysis**  
-> Comprehensive SEO, AEO, and content quality auditing platform for modern creators and marketers.
+## 📌 A. Problem Statement
 
-[![Made with React](https://img.shields.io/badge/React-18.x-61DAFB?logo=react)](https://reactjs.org/)
-[![TypeScript](https://img.shields.io/badge/TypeScript-5.x-3178C6?logo=typescript)](https://www.typescriptlang.org/)
-[![Tailwind CSS](https://img.shields.io/badge/Tailwind-3.x-38B2AC?logo=tailwind-css)](https://tailwindcss.com/)
-[![Firebase](https://img.shields.io/badge/Firebase-10.x-FFCA28?logo=firebase)](https://firebase.google.com/)
-[![Deploy Status](https://github.com/Mani-kanta-0539/Audit/actions/workflows/deploy.yml/badge.svg)](https://github.com/Mani-kanta-0539/Audit/actions/workflows/deploy.yml)
+Content creators need a single tool to check if their content is SEO-optimized, AI-discoverable,
+sounds human, and stands out from competitors.
+<h4>What to Build<h4>
+A content audit tool that scores text across 4 dimensions with actionable recommendations. 
 
 ---
 
-## 📋 Table of Contents
+## 📌 B. Solution Overview
 
-- [Overview](#-overview)
-- [Key Features](#-key-features)
-- [Technology Stack](#-technology-stack)
-- [Getting Started](#-getting-started)
-- [Usage Guide](#-usage-guide)
-- [Features Breakdown](#-features-breakdown)
-- [Mobile Responsive](#-mobile-responsive)
-- [Environment Variables](#-environment-variables)
-- [Contributing](#-contributing)
-- [License](#-license)
+**GritGrade** is an intelligent content audit platform powered by **Google Gemini AI**. It provides a holistic analysis of your content, offering actionable insights to improve visibility, engagement, and ranking.
+
+### Key Capabilities:
+*   **AI-Powered Analysis**: Uses Gemini 2.5 Flash to deeply understand content context, sentiment, and quality , SERP API to fetch SERP data & n8n to fetch video metadata.
+*   **Multi-Dimensional Scoring**: Evaluates content on SEO, AEO, Humanization, Differentiation, Freshness,Tone & Voice,Linking,etc. and for video(reels/youtube/instagram) content it also checks for Hook Strength,Visuals,Captions,Viral potential,Hashtags and more.
+*   **Video(URL) & Text Support**: Audits both written articles,blog posts, case studies,product pages and video scripts (YouTube/Instagram) via n8n integration.
+*   **AI-Powered Voice report**: It will generate a voice report for your content audit report.
+*   **Competitor Intelligence**: Fetches real-time SERP data to compare your content against top-ranking results.
+*   **Actionable Feedback**: Provides specific recommendations to fix issues and improve scores.
+*   **Export to PDF**: Export the audit report to a PDF file for easy sharing and reference.
+*   **progress bar**: Shows the progress of the audit report.
+*   **calendar**: To set your content audit report date.
+*   **profile**: To to your analytics dashboard.
+*   **share**: Share the audit report via email.
+
+### Impact: 
+* Drastically reduces auditing time from hours to minutes while improving content performance across search and social platforms and use to improve your content quality.
+* Finds "sleeping giant" articles that just need a small update to rank high again.
+* Manual content audits are slow, biased, and often outdated by the time they are finished. This AI-powered solution automates the heavy lifting, instantly identifying underperforming assets and semantic gaps. It empowers marketing teams to move from reactive 'cleanup' tasks to proactive, data-backed storytelling.
+* Stop guessing what works and start knowing. This AI-powered audit tool transforms weeks of manual data crunching into instant, actionable strategy—uncovering hidden traffic opportunities, fixing SEO gaps, and telling you exactly which content to update, archive.
+---
+
+## 📌 C. Architecture Diagram
+
+The following diagram illustrates the high-level architecture of GritGrade:
+
+```mermaid
+graph TD
+    User[User] -->|Interacts| Client["React Frontend (Vite)"]
+    
+    subgraph "Frontend Layer"
+        Client -->|Auth & Data| Firebase["Firebase (Auth/Firestore)"]
+        Client -->|Analysis Request| GeminiService["Gemini AI Service"]
+        Client -->|Video Metadata| N8nService["n8n Workflow"]
+        Client -->|Competitor Data| SerpService["Serper API"]
+    end
+    
+    subgraph "External Services"
+        GeminiService -->|API Call| GeminiAPI["Google Gemini API"]
+        N8nService -->|Webhook| N8nCloud["n8n Cloud/Self-Hosted"]
+        SerpService -->|Search Query| GoogleSearch["Google Search Results"]
+    end
+    
+    GeminiAPI -->|Analysis Result| GeminiService
+    N8nCloud -->|Metadata| N8nService
+    GoogleSearch -->|SERP Data| SerpService
+    
+    GeminiService -->|Audit Report| Client
+    N8nService -->|Video Details| Client
+    SerpService -->|Competitor Insights| Client
+```
 
 ---
 
-## 🎯 Overview
-
-**GritGrade** is an all-in-one content quality audit platform that helps content creators, SEO professionals, and digital marketers optimize their content for both search engines and AI-powered answer engines. Powered by Google Gemini AI, GritGrade provides comprehensive analysis across multiple dimensions including SEO, SERP performance, AEO optimization, content humanization, and competitive differentiation.
-
-### Why GritGrade?
-
-- ✅ **Unified Analysis** - Audit articles, video scripts, and SEO from one platform
-- ✅ **AI-Powered Insights** - Google Gemini 2.5 Flash for accurate content analysis
-- ✅ **Real-time Results** - Get comprehensive reports in under 60 seconds
-- ✅ **Competitor Intelligence** - Compare your content against top-ranking competitors
-- ✅ **Progress Tracking** - Monitor content improvements over time
-- ✅ **Mobile Responsive** - Fully optimized for all devices
-
----
-
-## ✨ Key Features
-
-### 🔍 Content Analysis
-
-#### **Article Auditing**
-- **SEO Analysis** - Keyword density, readability, meta descriptions, heading structure
-- **SERP Performance** - Ranking potential, estimated position, competitor comparison
-- **AEO Optimization** - Voice search readiness, schema markup, AI-friendly formatting
-- **Humanization Score** - AI pattern detection, natural flow, tone consistency
-- **Differentiation Metrics** - Content uniqueness, semantic similarity, value proposition
-
-#### **Video Script Analysis**
-- **Hook Strength** - Opening impact and retention potential
-- **Visual Pacing** - Scene transitions and engagement factors
-- **Viral Potential** - Trend alignment and shareability metrics
-- **Caption Quality** - Accessibility and engagement optimization
-- **Hashtag Strategy** - Trending tags and discoverability
-
-### 📊 Advanced Analytics
-
-- **Traffic Metrics** - Visits, unique visitors, bounce rate, session duration (AI-estimated)
-- **SEO Performance** - Authority score, organic traffic, keyword rankings
-- **Backlink Analysis** - Referring domains, backlink quality, link profile
-- **Competitive Insights** - Real-time competitor data and gap analysis
-- **Progress Tracking** - Historical data, improvement trends, goal setting
-
-### 🎨 User Experience
-
-- **Dark/Light Mode** - Full theme support with system preference detection
-- **Mobile Navigation** - Hamburger menu with smooth animations
-- **Responsive Design** - Optimized for phones, tablets, and desktops
-- **Export Reports** - Download comprehensive PDF audit reports
-- **Share Results** - Social sharing and collaboration features
-- **Text-to-Speech** - Audio report summaries
-
----
-
-## 🛠️ Technology Stack
+## 📌 D. Tech Stack
 
 ### Frontend
-- **React 18.x** - Modern UI library with hooks
-- **TypeScript** - Type-safe development
-- **Tailwind CSS** - Utility-first styling
-- **React Router** - Client-side routing
-- **Vite** - Fast build tool and dev server
+*   **React 18**: UI Library
+*   **TypeScript**: Type safety and developer experience
+*   **Vite**: Build tool and development server
+*   **Tailwind CSS**: Utility-first styling
+*   **React Router**: Navigation
 
 ### Backend & Services
-- **Firebase Authentication** - Secure user management
-- **Firebase Firestore** - Real-time NoSQL database
-- **Google Gemini AI** - Advanced content analysis
-- **SERP API** - Competitor data fetching
+*   **Firebase**: Authentication (Google Auth) and Firestore Database
+*   **Google Gemini API**: Core AI analysis engine (Gemini 2.5 Flash)
+*   **n8n**: Workflow automation for fetching video metadata (transcripts, views, likes)
+*   **Serp API**: Real-time Google Search results for competitor analysis
 
-### Additional Tools
-- **jsPDF** - PDF report generation
-- **html2canvas** - Screenshot capture for reports
-- **PostCSS** - CSS processing
-- **Autoprefixer** - Browser compatibility
-
+### Tools & Libraries
+*   **Recharts**: Data visualization
+*   **jsPDF**: Report generation
 ---
 
-## 🚀 Getting Started
+## 📌 E. How to Run Your Project
+
+Follow these steps to set up and run GritGrade locally.
 
 ### Prerequisites
+*   Node.js (v18+)
+*   npm or yarn
+*   Git
 
-- **Node.js** (v18 or higher)
-- **npm** or **yarn**
-- **Firebase Project** with Authentication and Firestore enabled
-- **Google Gemini API Key**
+### Step-by-Step Instructions
 
-### Installation
+1.  **Clone the Repository**
+    git clone https://github.com/Mani-kanta-0539/Audit.git
+    
 
-1. **Clone the repository**
-```bash
-git clone https://github.com/yourusername/gritgrade-audit-tool.git
-cd gritgrade-audit-tool
-```
+2.  **Install Dependencies**
+    npm install
 
-2. **Install dependencies**
-```bash
-npm install
-```
+3.  **Configure Environment Variables**
+    Create a `.env` file in the root directory and add your API keys (see Section F).
 
-3. **Set up environment variables**
+4.  **Run the Development Server**
+    npm run dev
 
-Create a `.env.local` file in the root directory:
+5.  **Access the Application**
+    Open your browser and navigate to `http://localhost:5173`.
+
+## 📌 F. API Keys / Usage Notes
+
+To run this project, you need to configure the following keys in your `.env` file.
+
+> **⚠️ SECURITY WARNING**: Never commit your `.env` file to version control. Use placeholders when sharing code.
 
 ```env
-# Firebase Configuration
+# Firebase Configuration (Required for Auth & DB)
 VITE_FIREBASE_API_KEY=your_firebase_api_key
 VITE_FIREBASE_AUTH_DOMAIN=your_project.firebaseapp.com
 VITE_FIREBASE_PROJECT_ID=your_project_id
@@ -136,234 +127,72 @@ VITE_FIREBASE_STORAGE_BUCKET=your_project.appspot.com
 VITE_FIREBASE_MESSAGING_SENDER_ID=your_sender_id
 VITE_FIREBASE_APP_ID=your_app_id
 
-# Google Gemini API
-API_KEY=your_gemini_api_key
+# AI Service (Required)
+VITE_GEMINI_API_KEY=your_gemini_api_key
 
-# SERP API (Optional)
-SERP_API_KEY=your_serp_api_key
+# External Integrations (Optional but recommended)
+VITE_SERP_API_KEY=your_serper_api_key
+VITE_N8N_WEBHOOK_URL=your_n8n_webhook_url
+VITE_N8N_ENABLED=true
 ```
 
-4. **Run the development server**
-```bash
-npm run dev
+**Where to get keys:**
+*   **Firebase**: [Firebase Console](https://console.firebase.google.com/)
+*   **Gemini API**: [Google AI Studio](https://aistudio.google.com/)
+*   **Serper API**: [Serper.dev](https://serper.dev/)
+*   **n8n**: [n8n.io](https://n8n.io/) (or self-hosted)
+
+---
+
+## 📌 G. Sample Inputs & Outputs
+
+### Input
+**Type**: URL Analysis
+**URL**: `https://example.com/blog/future-of-ai`
+**Target Keyword**: "Artificial Intelligence Trends"
+
+### Output (Audit Report)
+The system generates a comprehensive JSON object visualized in the dashboard:
+
+```json
+{
+  "overallScore": 85,
+  "dimensions": {
+    "seo": {
+      "score": 90,
+      "issues": ["Meta description is too short"],
+      "recommendations": ["Expand meta description to 160 chars"]
+    },
+    "humanization": {
+      "score": 82,
+      "analysis": "Tone is professional but slightly robotic in section 2."
+    },
+    "aeo": {
+      "score": 88,
+      "voiceSearchOptimized": true
+    }
+  },
+  "competitorComparison": {
+    "yourRank": "Estimated Top 10",
+    "topCompetitor": "TechCrunch Article"
+  }
+}
 ```
 
-5. **Open your browser**
-```
-http://localhost:5173
-```
-
-### Build for Production
-
-```bash
-npm run build
-```
-
-The optimized build will be in the `dist/` folder.
-
 ---
 
-## 📖 Usage Guide
+## 📌 H. Video Demo Link
 
-### 1. **Sign Up / Log In**
-- Create an account or log in with existing credentials
-- Authentication handled securely via Firebase
+Watch the full demo of GritGrade in action:
 
-### 2. **Run an Audit**
-- Navigate to the **Workspace** (Dashboard)
-- Choose content type: **Article** or **Video**
-- Paste your content or URL
-- Enter target keywords (optional)
-- Select analysis dimensions
-- Click **Run Audit**
 
-### 3. **View Results**
-- Overall quality score (0-100)
-- Detailed scores across all dimensions
-- Visual charts and graphs
-- Actionable recommendations
-- Competitor comparison
-
-### 4. **Export & Share**
-- Export as PDF report
-- Share via social media
-- Copy shareable link
-- Listen to audio summary
-
-### 5. **Track Progress**
-- View **Analytics** page for trends
-- Set improvement goals
-- Monitor historical performance
-- Compare with benchmarks
-
----
-
-## 🎨 Features Breakdown
-
-### Dashboard (Workspace)
-
-**Content Input Options:**
-- Direct text input (up to 15,000 characters)
-- URL analysis for live content
-- Keyword targeting
-- Platform selection (YouTube, Instagram, TikTok for videos)
-
-**Dimension Selection:**
-Choose which metrics to analyze:
-- SEO Analysis
-- SERP Performance
-- AEO Optimization
-- Humanization & Tone
-- Differentiation
-- Freshness, Linking, Accessibility
-- Content Depth & Sentiment
-
-### Analysis Page
-
-**Comprehensive Reports:**
-- **Overview** - Summary and key metrics
-- **SEO** - Keyword density, readability, heading structure, meta tags
-- **SERP** - Ranking potential, competitor analysis, word count comparison
-- **AEO** - Voice search optimization, schema markup, citation quality
-- **Humanization** - AI pattern detection, sentence variety, tone analysis
-- **Differentiation** - Content uniqueness, semantic comparison, angle recommendations
-
-**Visual Elements:**
-- Progress bars and charts
-- Score cards with circular indicators
-- Comparison tables
-- Recommendation lists
-- Trend arrows and percentages
-
-### Traffic Analytics
-
-**AI-Estimated Metrics:**
-- Total visits
-- Unique visitors
-- Pages per visit
-- Average visit duration
-- Bounce rate
-
-*Each metric includes trend indicators and percentage changes*
-
-### Advanced SEO Metrics
-
-**Performance Indicators:**
-- Authority Score (0-100 with rank)
-- Organic Traffic (monthly estimates)
-- Organic Keywords (ranking count)
-- Paid Keywords (advertising presence)
-- Referring Domains (backlink sources)
-- Total Backlinks (link profile size)
-
-### Progress Tracking
-
-**Historical Analysis:**
-- Line charts showing score trends
-- Calendar view of audit history
-- Goal setting and tracking
-- Competitor comparison over time
-- Performance insights
-
-### Audit History
-
-**Saved Reports:**
-- All previous audits stored
-- Quick access to any report
-- Delete unwanted entries
-- Re-run audits with same parameters
-
----
-
-## 📱 Mobile Responsive
-
-GritGrade is **fully optimized for mobile devices**:
-
-### Mobile Features
-- ✅ Hamburger navigation menu
-- ✅ Touch-friendly buttons (44px+ targets)
-- ✅ Horizontal scrolling tables
-- ✅ Responsive text sizing
-- ✅ Progressive padding system
-- ✅ Optimized grid layouts
-
-### Breakpoints
-- **Mobile**: < 640px (sm)
-- **Tablet**: 640px - 1024px (md)
-- **Desktop**: > 1024px (lg)
-
-### Mobile Optimizations
-- Reduced padding: `px-3` on mobile vs `px-8` on desktop
-- Progressive top spacing: `pt-20 sm:pt-32 md:pt-40`
-- Stacking grids: `grid-cols-1 sm:grid-cols-2 md:grid-cols-3`
-- Smaller text: `text-3xl sm:text-5xl md:text-7xl`
-
----
-
-## 🔧 Environment Variables
-
-Required environment variables for the project:
-
-| Variable | Description | Required |
-|----------|-------------|----------|
-| `VITE_FIREBASE_API_KEY` | Firebase API key | Yes |
-| `VITE_FIREBASE_AUTH_DOMAIN` | Firebase auth domain | Yes |
-| `VITE_FIREBASE_PROJECT_ID` | Firebase project ID | Yes |
-| `VITE_FIREBASE_STORAGE_BUCKET` | Firebase storage bucket | Yes |
-| `VITE_FIREBASE_MESSAGING_SENDER_ID` | Sender ID | Yes |
-| `VITE_FIREBASE_APP_ID` | Firebase app ID | Yes |
-| `API_KEY` | Google Gemini API key | Yes |
-| `SERP_API_KEY` | SERP API key (optional) | No |
-
----
-
-## 🤝 Contributing
-
-We welcome contributions! Here's how you can help:
-
-1. **Fork the repository**
-2. **Create a feature branch** (`git checkout -b feature/amazing-feature`)
-3. **Commit your changes** (`git commit -m 'Add amazing feature'`)
-4. **Push to the branch** (`git push origin feature/amazing-feature`)
-5. **Open a Pull Request**
-
-### Development Guidelines
-- Follow TypeScript best practices
-- Use Tailwind CSS for styling
-- Maintain mobile responsiveness
-- Add comments for complex logic
-- Test on multiple devices
-
----
-
-## 📄 License
-
-This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) file for details.
-
----
-
-## 🙏 Acknowledgments
-
-- **Google Gemini AI** - For powerful content analysis
-- **Firebase** - For authentication and database
-- **Tailwind CSS** - For beautiful, responsive UI
-- **React Community** - For amazing tools and libraries
-
----
-
-## 📞 Support
-
-For issues, questions, or feature requests:
-- 🐛 [Open an Issue](https://github.com/yourusername/gritgrade-audit-tool/issues)
-- 💬 [Discussions](https://github.com/yourusername/gritgrade-audit-tool/discussions)
-- 📧 Email: support@gritgrade.com
-
----
-
+-----
+------
 <div align="center">
-  
+
+[https://mani-kanta-0539.github.io/Audit/](https://mani-kanta-0539.github.io/Audit/) 
+<p>This is our published version of the project<br>
+note: this is not the final version of the project, there are some unaccurate results in video analysis due to the n8n localhost webhook url changing every time the server restarts and we try to improve our workflows</p>
+
 **Made with ❤️ by the GritGrade Team**
-
-[Website](https://gritgrade.com) • [Documentation](https://docs.gritgrade.com) • [Blog](https://blog.gritgrade.com)
-
 </div>
